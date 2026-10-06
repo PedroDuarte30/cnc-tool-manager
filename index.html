@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/css/styles.css" />
+    <title>CNC Tool Manager</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <header>
+          <h1>CNC Tool Manager</h1>
+        </header>
+
+        <section class="add-tools">
+          <form class="input-group">
+            <div>
+              <label for="name">Name:</label>
+              <input
+                id="name"
+                type="text"
+                placeholder="Tool name"
+                required
+              />
+            </div>
+            <div>
+              <label for="stock">Stock:</label>
+              <input
+                id="stock"
+                type="number"
+                placeholder="Tool stock"
+                min="0"
+                />
+            </div>
+
+            <button type="submit" class="btn">Add tool</button>
+          </form>
+        </section>
+
+        <section class="tools-section">
+          <h2>Tool List</h2>
+          <div class="tool-list">
+            <ul id="tools-ul">
+            </ul>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="src/js/main.js"></script>
+  </body>
+</html>
