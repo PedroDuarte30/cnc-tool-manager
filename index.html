@@ -17,13 +17,9 @@
           <form class="input-group">
             <div>
               <label for="name">Name:</label>
-              <input
-                id="name"
-                type="text"
-                placeholder="Tool name"
-                required
-              />
+              <input id="name" type="text" placeholder="Tool name" required />
             </div>
+            
             <div>
               <label for="stock">Stock:</label>
               <input
@@ -31,7 +27,7 @@
                 type="number"
                 placeholder="Tool stock"
                 min="0"
-                />
+              />
             </div>
 
             <button type="submit" class="btn">Add tool</button>
@@ -40,9 +36,14 @@
 
         <section class="tools-section">
           <h2>Tool List</h2>
+
+          <div class="search-group">
+            <input id="search" type="text" placeholder="Search tool">
+          </div>
+
           <div class="tool-list">
-            <ul id="tools-ul">
-            </ul>
+            <p id="no-results" class="hidden">No tools found</p>
+            <ul id="tools-ul"></ul>
           </div>
         </section>
       </div>

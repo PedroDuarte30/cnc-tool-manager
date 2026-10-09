@@ -78,6 +78,15 @@ header h1 {
   cursor: pointer;
 }
 
+.edit-btn,
+.remove-btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+
 /*Tools section*/
 .tools-section {
   display: flex;
@@ -90,18 +99,68 @@ header h1 {
   font-size: 2rem;
 }
 
+.tool-list {
+  width: 100%;
+}
+
 .tool-list ul {
   padding: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 10px;
+  padding: 0;
 }
 
 .tool-list li {
-  padding: 10px;
+  width: 100%;
+  padding: 12px;
   border: 2px solid #93b1ef;
   border-radius: 8px;
   font-size: 1.3rem;
   list-style: none;
 }
 
+/*Tools button*/
+.tool-list li button {
+  padding: 5px 8px;
+  border: 1px solid #93b1ef;
+  border-radius: 6px;
+  background-color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tool-list li button:hover {
+  background-color: #eaf0ff;
+}
+
+/*Space between buttons*/
+.tool-list li button + button {
+  margin-left: 6px;
+}
+
+
+/*Search bar*/
+.search-group {
+  width: 100%;
+  margin: 15px 0;
+}
+
+.search-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #93b1ef;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-group input:focus {
+  border-color: #2e4a80;
+}
+
+.hidden {
+  display: none;
+}
