@@ -1,52 +1,89 @@
 <!doctype html>
-<html lang="pt">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="src/css/styles.css" />
     <title>CNC Tool Manager</title>
   </head>
   <body>
+    <header>
+      <h1>CNC Tool Manager</h1>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li>
+            <a href="#dashboard"><i class="bx bx-dashboard"></i>Dashboard</a>
+          </li>
+          <li>
+            <a href="#add"><i class="bx bx-spanner"></i>Tools</a>
+          </li>
+          <li>
+            <a href="#inventory"
+              ><i class="bx bx-list-ul-square"></i>Tool Inventory</a
+            >
+          </li>
+          <li>
+            <a href="#moves"
+              ><i class="bx bx-arrow-up-down"></i>Stock Movements</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
     <main>
-      <div class="container">
-        <header>
-          <h1>CNC Tool Manager</h1>
-        </header>
+      <section class="dashboard" id="dashboard">
+        <h2>Dashboard</h2>
 
-        <section class="add-tools">
-          <form class="input-group">
-            <div>
-              <label for="name">Name:</label>
-              <input id="name" type="text" placeholder="Tool name" required />
-            </div>
-            
-            <div>
-              <label for="stock">Stock:</label>
-              <input
-                id="stock"
-                type="number"
-                placeholder="Tool stock"
-                min="0"
-              />
-            </div>
-
-            <button type="submit" class="btn">Add tool</button>
-          </form>
-        </section>
-
-        <section class="tools-section">
-          <h2>Tool List</h2>
-
-          <div class="search-group">
-            <input id="search" type="text" placeholder="Search tool">
+        <div class="container-tools">
+          <div class="total-tools">
+            <h3><i class="bx bx-spanner"></i>Total tools</h3>
+            <p>---</p>
           </div>
 
-          <div class="tool-list">
-            <p id="no-results" class="hidden">No tools found</p>
-            <ul id="tools-ul"></ul>
+          <div class="total-stock">
+            <h3><i class="bx bx-cube"></i>Total stock</h3>
+            <p>---</p>
           </div>
-        </section>
-      </div>
+
+          <div class="low-stock">
+            <h3><i class="bx bx-alert-triangle"></i>Low Stock</h3>
+            <p>---</p>
+          </div>
+
+          <div class="out-stock">
+            <h3><i class="bx bx-x-circle"></i>Out of stock</h3>
+            <p>---</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="add" id="add">
+        <h2>Add Tools</h2>
+        <form action="">
+          <label for="name" >Name: </label>
+          <input type="text" name="name" id="name" required>
+
+          <label for="stock">Stock:</label>
+          <input type="number" name="stock" id="stock" required min="0">
+
+          <button type="submit">Add tool</button>
+        </form>
+        <div>
+          <h2>Edit tools</h2>
+        </div>
+      </section>
+
+      <section class="inventory" id="inventory">
+        <h2>Tool Inventory</h2>
+      </section>
+
+      <section class="moves" id="moves">
+        <h2>Stock Movements</h2>
+      </section>
     </main>
     <script src="src/js/main.js"></script>
   </body>
