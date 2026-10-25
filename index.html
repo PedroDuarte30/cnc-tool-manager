@@ -13,76 +13,116 @@
   <body>
     <header>
       <h1>CNC Tool Manager</h1>
-      <nav class="navbar">
-        <ul class="nav-links">
-          <li>
-            <a href="#dashboard"><i class="bx bx-dashboard"></i>Dashboard</a>
-          </li>
-          <li>
-            <a href="#add"><i class="bx bx-spanner"></i>Tools</a>
-          </li>
-          <li>
-            <a href="#inventory"
-              ><i class="bx bx-list-ul-square"></i>Tool Inventory</a
-            >
-          </li>
-          <li>
-            <a href="#moves"
-              ><i class="bx bx-arrow-up-down"></i>Stock Movements</a
-            >
-          </li>
+      <nav>
+        <ul>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#verification">Stock Verification</a></li>
+          <li><a href="#movements">Stock Movements</a></li>
+          <li><a href="#settings">Settings</a></li>
         </ul>
       </nav>
     </header>
     <main>
       <section class="dashboard" id="dashboard">
         <h2>Dashboard</h2>
-
-        <div class="container-tools">
-          <div class="total-tools">
-            <h3><i class="bx bx-spanner"></i>Total tools</h3>
+        <div class="dashboard-cards">
+          <div class="card total-tools">
+            <h3>Total Tools</h3>
             <p>---</p>
           </div>
-
-          <div class="total-stock">
-            <h3><i class="bx bx-cube"></i>Total stock</h3>
+          <div class="card total-stock">
+            <h3>Total Stock</h3>
             <p>---</p>
           </div>
-
-          <div class="low-stock">
-            <h3><i class="bx bx-alert-triangle"></i>Low Stock</h3>
+          <div class="card low-stock">
+            <h3>Low Stock</h3>
             <p>---</p>
           </div>
-
-          <div class="out-stock">
-            <h3><i class="bx bx-x-circle"></i>Out of stock</h3>
+          <div class="card out-stock">
+            <h3>Out of Stock</h3>
             <p>---</p>
           </div>
         </div>
-      </section>
-
-      <section class="add" id="add">
-        <h2>Add Tools</h2>
-        <form action="">
-          <label for="name" >Name: </label>
-          <input type="text" name="name" id="name" required>
-
-          <label for="stock">Stock:</label>
-          <input type="number" name="stock" id="stock" required min="0">
-
-          <button type="submit">Add tool</button>
-        </form>
-        <div>
-          <h2>Edit tools</h2>
+        <div class="verification-status">
+          <h3>Stock Verification</h3>
+          <p>Last verified: ---</p>
+        </div>
+        <div class="recent-movements">
+          <h3>Recent Movements</h3>
+          <p>No movements recorded yet.</p>
         </div>
       </section>
 
-      <section class="inventory" id="inventory">
-        <h2>Tool Inventory</h2>
+      <section class="tools" id="tools">
+        <h2>Tools</h2>
+        <div class="tools-search">
+          <input type="search" id="tool-search" placeholder="Search tools..." />
+        </div>
+        <div class="tools-filters">
+          <select id="category-filter">
+            <option value="">All categories</option>
+          </select>
+          <select id="stock-filter">
+            <option value="">All stock levels</option>
+            <option value="in-stock">In Stock</option>
+            <option value="low-stock">Low Stock</option>
+            <option value="out-stock">Out of Stock</option>
+          </select>
+        </div>
+        <button type="button" id="open-add-tool">+ Add Tool</button>
+        <div class="tools-list">
+          <p>No tools found.</p>
+        </div>
       </section>
 
-      <section class="moves" id="moves">
+      <section class="verification" id="verification">
+        <h2>Stock Verification</h2>
+        <div class="verification-content">
+          <p>Last verification: ---</p>
+          <div class="verification-list"></div>
+          <button type="button" id="confirm-verification">
+            Confirm Verification
+          </button>
+        </div>
+      </section>
+
+      <section class="movements" id="movements">
         <h2>Stock Movements</h2>
+        <div class="movements-content">
+          <div class="movement-form">
+            <h3>Register Movement</h3>
+            <label for="movement-tool">Select tool</label>
+            <select id="movement-tool">
+              <option value="">Choose a tool</option>
+            </select>
+            <label for="movement-type">Movement type</label>
+            <select id="movement-type">
+              <option value="entry">Entry (Stock in)</option>
+              <option value="exit">Exit (Stock Out)</option>
+            </select>
+            <label for="movement-quantity">Quantity</label>
+            <input type="number" id="movement-quantity" min="1" step="1">
+            <button type="button" id="register-movement">Register Movement</button>
+          </div>
+          <div class="movement-history">
+            <h3>Movement History</h3>
+            <p class="empty-state">No movements recorded yet.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings" id="settings">
+        <h2>Settings</h2>
+        <div class="category-settings">
+          <h3>Manage Categories</h3>
+          <label for="new-category">Category name</label>
+          <input type="text" id="new-category" placeholder="Enter category name">
+          <button type="button" id="add-category">Add Category</button>
+          <div class="category-list">
+            <p>No categories added yet.</p>
+          </div>
+        </div>
       </section>
     </main>
     <script src="src/js/main.js"></script>

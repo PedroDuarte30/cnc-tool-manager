@@ -1,7 +1,8 @@
 :root {
-    --background: #181C22;
-    --cards: #242A32;
-    --highlights: #3DBB78;
-    --main: #E8EDF2;
-    --secondary: #A5AFBA;
+    --background: #171717;
+    --cards: #262626;
+    --highlights: #F59E0B;
+    --main: #F5F5F5;
+    --secondary: #A3A3A3;
+    --hover-background: #F2A900;
 }

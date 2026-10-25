@@ -4,6 +4,7 @@
 html {
   font-size: 62.5%;
   font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
 
 * {
@@ -27,6 +28,7 @@ header h1 {
   display: flex;
   justify-content: center;
   padding: 0px 15px;
+  color: var(--main);
 }
 
 /*Mobile First*/
@@ -59,47 +61,143 @@ header h1 {
 
 h2 {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   padding: 20px;
+  color: var(--main);
 }
 
 /*Dashboard*/
+.dashboard h2 {
+  width: 100%;
+  text-align: left;
+}
+
 .container-tools {
   display: grid;
   grid-template-columns: 1fr;
   gap: 15px;
   place-items: center;
   font-size: 1.4rem;
+  color: var(--main);
 }
 
 .container-tools div {
-    background-color: var(--cards);
-    border: 2px solid var(--highlights);
-    border-radius: 12px;
-    padding: 10px;
-    max-width: 200px;
-    width: 100%;
+  border: 1px solid var(--highlights);
+  border-radius: 12px;
+  padding: 10px;
+  max-width: 200px;
+  width: 100%;
 }
 
 .container-tools h3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    text-align: center;
-    padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 12px;
 }
 
 .container-tools div i {
-    font-size: 2rem;
-    font-weight: lighter;
+  font-size: 2rem;
+  font-weight: lighter;
 }
 
 .container-tools p {
-    text-align: center;
-    padding: 12px;
+  text-align: center;
+  padding: 12px;
 }
+
+.container-tools .fade-in {
+  opacity: 0;
+  animation: fadeInOpacity 2s ease-in-out forwards;
+}
+
+@keyframes fadeInOpacity {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+     transform: translateY(0);
+  }
+}
+
+/*Add tools*/
+.container-form {
+  margin: 20px 0;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  place-items: center;
+}
+
+.container-form form {
+  display: grid;
+  justify-content: stretch;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  place-items: center;
+  font-size: 1.5rem;
+  color: var(--secondary);
+}
+
+.container-form form input {
+  max-width: 350px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--background);
+  color: var(--main);
+  border: 1px solid #404040;
+}
+
+.container-form form input:focus {
+  outline: 1px solid var(--highlights);
+  border-color: var(--highlights);
+}
+
+/* Hide number input arrows */
+.container-form form input[type="number"]::-webkit-inner-spin-button,
+.container-form form input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*Button*/
+.add-btn {
+  width: 150px;
+  height: 50px;
+  border: 1px solid var(--highlights);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  color: var(--main);
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+
+.add-btn:hover {
+  background: var(--hover-background);
+  color: var(--background);
+  transition: all 0.3s ease;
+}
+
+.add-btn:focus {
+    border-color: var(--highlights);
+    outline: 2px solid var(--highlights);
+}
+
+.container-form {
+  display: flex;
+}
+
+
 
 
 
