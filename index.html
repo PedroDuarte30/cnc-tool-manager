@@ -12,17 +12,33 @@
   </head>
   <body>
     <header>
-      <h1>CNC Tool Manager</h1>
-      <nav>
+      <h1> <i class="bx bx-gear"></i> CNC Tool Manager </h1>
+      <button type="button" class="menu-btn" aria-label="Open navigation menu" aria-expanded="false">
+        <i class="bx bx-menu-filter"></i>
+      </button>
+
+      <nav class="main-nav">
         <ul>
           <li><a href="#dashboard">Dashboard</a></li>
           <li><a href="#tools">Tools</a></li>
           <li><a href="#verification">Stock Verification</a></li>
           <li><a href="#movements">Stock Movements</a></li>
           <li><a href="#settings">Settings</a></li>
+        
         </ul>
       </nav>
     </header>
+
+    <nav class="bottom-nav">
+        <ul>
+          <li><a href="#dashboard"><i class="bx bx-dashboard"></i>Dashboard</a></li>
+          <li><a href="#tools"><i class="bx bx-spanner"></i>Tools</a></li>
+          <li><a href="#verification"><i class="bx bx-seal-check"></i>Verify</a></li>
+          <li><a href="#movements"><i class="bx bx-arrow-up-down"></i>Moves</a></li>
+          <li><a href="#settings"><i class="bx bx-cog"></i>Settings</a></li>
+        </ul>
+      </nav>
+
     <main>
       <section class="dashboard" id="dashboard">
         <h2>Dashboard</h2>
@@ -79,7 +95,7 @@
       <section class="verification" id="verification">
         <h2>Stock Verification</h2>
         <div class="verification-content">
-          <p>Last verification: ---</p>
+          <p>Check physical stock and confirm any differences</p>
           <div class="verification-list"></div>
           <button type="button" id="confirm-verification">
             Confirm Verification
