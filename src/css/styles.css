@@ -106,7 +106,7 @@ main section h2 {
   font-size: 1.5rem;
 }
 
-/*Stock verification*/
+/*Verification Status*/
 .verification-status {
   background-color: var(--cards);
   border: 1px solid var(--highlights);
@@ -138,6 +138,7 @@ main section h2 {
   flex-direction: column;
   gap: 10px;
 }
+
 .tools-search input {
   width: 100%;
   padding: 10px;
@@ -190,11 +191,91 @@ main section h2 {
   font-size: 1.4rem;
 }
 
-/*Stock Verification*/
+/*Stock verification*/
+.verification {
+  display: flex;
+  flex-direction: column;
+}
+
 .verification-content {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  gap: 15px;
+}
+
+.verification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.confirm-btn {
+  padding: 10px;
+  background-color: var(--highlights);
+  border: none;
+  border-radius: 8px;
+  color: var(--main);
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background-color: var(--hover-background);
+}
+
+/*Stock Movements*/
+.movements {
+  display: flex;
+  flex-direction: column;
+}
+
+.movements-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.movement-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  background-color: var(--cards);
+  border-radius: 8px;
+}
+
+.movement-form select, .movement-form input {
+  background-color: var(--background);
+  color: var(--main);
+  border: 1px solid var(--highlights);
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.register-btn {
+  padding: 10px;
+  background-color: var(--highlights);
+  border: none;
+  border-radius: 8px;
+  color: var(--main);
+  cursor: pointer;
+}
+
+.register-btn:hover {
+  background-color: var(--hover-background);
+}
+
+.movement-history {
+  padding: 15px;
+  background-color: var(--cards);
+  border-radius: 8px;
+}
+
+.movement-history h3, .movement-history p {
   font-size: 1.4rem;
 }
+
 
 /*Bottom Nav */
 .bottom-nav {
@@ -224,3 +305,4 @@ main section h2 {
   font-size: 2rem;
   margin-bottom: 5px;
 }
+
