@@ -12,8 +12,13 @@
   </head>
   <body>
     <header>
-      <h1> <i class="bx bx-gear"></i> CNC Tool Manager </h1>
-      <button type="button" class="menu-btn" aria-label="Open navigation menu" aria-expanded="false">
+      <h1><i class="bx bx-gear"></i> CNC Tool Manager</h1>
+      <button
+        type="button"
+        class="menu-btn"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >
         <i class="bx bx-menu-filter"></i>
       </button>
 
@@ -24,20 +29,29 @@
           <li><a href="#verification">Stock Verification</a></li>
           <li><a href="#movements">Stock Movements</a></li>
           <li><a href="#settings">Settings</a></li>
-        
         </ul>
       </nav>
     </header>
 
     <nav class="bottom-nav">
-        <ul>
-          <li><a href="#dashboard"><i class="bx bx-dashboard"></i>Dashboard</a></li>
-          <li><a href="#tools"><i class="bx bx-spanner"></i>Tools</a></li>
-          <li><a href="#verification"><i class="bx bx-seal-check"></i>Verify</a></li>
-          <li><a href="#movements"><i class="bx bx-arrow-up-down"></i>Moves</a></li>
-          <li><a href="#settings"><i class="bx bx-cog"></i>Settings</a></li>
-        </ul>
-      </nav>
+      <ul>
+        <li>
+          <a href="#dashboard"><i class="bx bx-dashboard"></i>Dashboard</a>
+        </li>
+        <li>
+          <a href="#tools"><i class="bx bx-spanner"></i>Tools</a>
+        </li>
+        <li>
+          <a href="#verification"><i class="bx bx-seal-check"></i>Verify</a>
+        </li>
+        <li>
+          <a href="#movements"><i class="bx bx-arrow-up-down"></i>Moves</a>
+        </li>
+        <li>
+          <a href="#settings"><i class="bx bx-cog"></i>Settings</a>
+        </li>
+      </ul>
+    </nav>
 
     <main>
       <section class="dashboard" id="dashboard">
@@ -72,21 +86,35 @@
 
       <section class="tools" id="tools">
         <h2>Tools</h2>
-        <div class="tools-search">
-          <input type="search" id="tool-search" placeholder="Search tools..." />
+
+        <div class="tools-toolbar">
+          <div class="tools-search">
+            <input
+              class="form-control"
+              type="search"
+              id="tool-search"
+              placeholder="Search tools..."
+            />
+          </div>
+
+          <div class="tools-filters">
+            <select class="form-control" id="category-filter">
+              <option value="">All categories</option>
+            </select>
+
+            <select class="form-control" id="stock-filter">
+              <option value="">All stock levels</option>
+              <option value="in-stock">In Stock</option>
+              <option value="low-stock">Low Stock</option>
+              <option value="out-stock">Out of Stock</option>
+            </select>
+          </div>
+
+          <button type="button" class="tool-btn" id="open-add-tool">
+            + Add Tool
+          </button>
         </div>
-        <div class="tools-filters">
-          <select id="category-filter">
-            <option value="">All categories</option>
-          </select>
-          <select id="stock-filter">
-            <option value="">All stock levels</option>
-            <option value="in-stock">In Stock</option>
-            <option value="low-stock">Low Stock</option>
-            <option value="out-stock">Out of Stock</option>
-          </select>
-        </div>
-        <button type="button" class="tool-btn" id="open-add-tool">+ Add Tool</button>
+
         <div class="tools-list">
           <p>No tools found.</p>
         </div>
@@ -109,17 +137,25 @@
           <div class="movement-form">
             <h3>Register Movement</h3>
             <label for="movement-tool">Select tool</label>
-            <select id="movement-tool">
+            <select class="form-control" id="movement-tool">
               <option value="">Choose a tool</option>
             </select>
             <label for="movement-type">Movement type</label>
-            <select id="movement-type">
+            <select class="form-control" id="movement-type">
               <option value="entry">Entry (Stock in)</option>
               <option value="exit">Exit (Stock Out)</option>
             </select>
             <label for="movement-quantity">Quantity</label>
-            <input type="number" id="movement-quantity" min="1" step="1">
-            <button type="button" class="register-btn" id="register-movement">Register Movement</button>
+            <input
+              class="form-control"
+              type="number"
+              id="movement-quantity"
+              min="1"
+              step="1"
+            />
+            <button type="button" class="register-btn" id="register-movement">
+              Register Movement
+            </button>
           </div>
           <div class="movement-history">
             <h3>Movement History</h3>
@@ -133,8 +169,15 @@
         <div class="category-settings">
           <h3>Manage Categories</h3>
           <label for="new-category">Category name</label>
-          <input type="text" id="new-category" placeholder="Enter category name">
-          <button type="button" id="add-category">Add Category</button>
+          <input
+            class="form-control"
+            type="text"
+            id="new-category"
+            placeholder="Enter category name"
+          />
+          <button class="add-btn" type="button" id="add-category">
+            Add Category
+          </button>
           <div class="category-list">
             <p>No categories added yet.</p>
           </div>
