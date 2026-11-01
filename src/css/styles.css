@@ -28,6 +28,10 @@ header {
   position: relative;
 }
 
+header i {
+ font-size: 2.2rem;
+}
+
 nav a {
   text-decoration: none;
   color: var(--main);
@@ -48,40 +52,6 @@ main section h2 {
 }
 
 /*Mobile*/
-.main-nav {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  background-color: var(--cards);
-  padding: 20px;
-  gap: 15px;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: 0.3s;
-}
-
-.main-nav.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-ul {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  gap: 10px;
-}
-
-.menu-btn {
-  background: transparent;
-  border: none;
-  color: var(--main);
-  font-size: 2.4rem;
-  cursor: pointer;
-}
-
 .form-control {
   width: 100%;
   padding: 10px;
@@ -336,26 +306,6 @@ ul {
 
 /*Breakpoint*/
 @media (min-width: 768px) {  
-  /*Navbar*/
-  .menu-btn {
-    display: none;
-  }
-
-  .main-nav {
-    opacity: 1;
-    transform: translateY(0px);
-    position: static;
-    background-color: transparent;
-    padding: 0;
-  }
-
-  .main-nav ul {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-  }
-
   /*Dashboard*/
   .dashboard-cards {
     display: grid;
@@ -387,4 +337,34 @@ ul {
   flex: 1;
   min-width: 0;
 }
+
+ /*Verification*/
+  .verification-content {
+    gap: 20px;
+    font-size: 1.4rem;
+  }
+
+  /*Stock Movements*/
+  .movements-content {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+  }
+
+  .movement-history {
+    text-align: center;
+  }
+
+  .category-form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .bottom-nav {
+    padding: 15px 20px;
+  }
+
+  .bottom-nav a i {
+    font-size: 2.2rem;
+  }
 }
