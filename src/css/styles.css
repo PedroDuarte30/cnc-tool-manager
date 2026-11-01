@@ -29,7 +29,7 @@ header {
 }
 
 header i {
- font-size: 2.2rem;
+  font-size: 2.2rem;
 }
 
 nav a {
@@ -139,6 +139,7 @@ main section h2 {
   border-radius: 8px;
   color: var(--main);
   cursor: pointer;
+  width: 100%;
 }
 
 .tool-btn:hover {
@@ -151,6 +152,12 @@ main section h2 {
   border-radius: 8px;
   padding: 15px;
   font-size: 1.4rem;
+}
+
+.tools-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 /*Stock verification*/
@@ -265,10 +272,17 @@ main section h2 {
   border-radius: 8px;
   color: var(--main);
   cursor: pointer;
+  width: 100%;
 }
 
 .add-btn:hover {
   background-color: var(--hover-background);
+}
+
+.category-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .category-list p {
@@ -305,7 +319,7 @@ main section h2 {
 }
 
 /*Breakpoint*/
-@media (min-width: 768px) {  
+@media (min-width: 768px) {
   /*Dashboard*/
   .dashboard-cards {
     display: grid;
@@ -334,11 +348,11 @@ main section h2 {
   }
 
   .tools-filters .form-control {
-  flex: 1;
-  min-width: 0;
-}
+    flex: 1;
+    min-width: 0;
+  }
 
- /*Verification*/
+  /*Verification*/
   .verification-content {
     gap: 20px;
     font-size: 1.4rem;
@@ -355,7 +369,8 @@ main section h2 {
   }
 
   .category-form {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
     gap: 15px;
   }
@@ -366,5 +381,10 @@ main section h2 {
 
   .bottom-nav a i {
     font-size: 2.2rem;
+  }
+
+  .tool-btn,
+  .add-btn {
+    width: auto;
   }
 }
