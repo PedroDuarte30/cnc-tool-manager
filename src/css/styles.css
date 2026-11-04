@@ -154,11 +154,65 @@ main section h2 {
   font-size: 1.4rem;
 }
 
+.card h3 {
+  margin-top: 0;
+  color: var(--main);
+}
+
+.card p {
+  color: var(--main);
+  font-size: 14px;
+}
+
+.card .button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
 .tools-toolbar {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
+
+#container-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tool-card {
+  background-color: var(--background);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+}
+
+.tool-card h3 {
+  margin-top: 0;
+  color: var(--main);
+}
+
+.tool-card p {
+  color: var(--main);
+  font-size: 1.4rem;
+  
+
+}
+
 
 /*Stock verification*/
 .verification {
@@ -351,6 +405,14 @@ main section h2 {
     flex: 1;
     min-width: 0;
   }
+
+  #container-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
   /*Verification*/
   .verification-content {
