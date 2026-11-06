@@ -27,7 +27,7 @@ const tools = [
     minStock: 2,
   },
 
-    {
+  {
     id: "tool-004",
     name: "Fresa M8",
     reference: "FR-M8",
@@ -66,21 +66,20 @@ outOfStockElement.textContent = outOfStock;
 //Tools Section
 const container = document.getElementById("container-cards");
 
-const cardsHTML = tools
-  .map((tool) => {
+function renderTools(toolsToRender) {
+  const cardsHTML = toolsToRender
+    .map((tool) => {
+      let toolStatus = "";
 
-    let toolStatus = "";
+      if (tool.stock === 0) {
+        toolStatus = "Out of Stock";
+      } else if (tool.stock > 0 && tool.stock <= tool.minStock) {
+        toolStatus = "Low Stock";
+      } else {
+        toolStatus = "In Stock";
+      }
 
-    if (tool.stock === 0) {
-      toolStatus = "Out of Stock";
-    } else if (tool.stock > 0 && tool.stock <= tool.minStock) {
-      toolStatus = "Low Stock";
-    } else {
-      toolStatus = "In Stock";
-    }
-    
-
-    return `
+      return `
     <div class="tool-card">
       <h3>${tool.name}</h3>
       <p><strong>Id:</strong> ${tool.id}</p>
@@ -91,10 +90,39 @@ const cardsHTML = tools
       <p><strong>Status:</strong> ${toolStatus}</p>
     </div>
   `;
-  })
-  .join("");
+    })
+    .join("");
 
-container.innerHTML = cardsHTML;
+  container.innerHTML = cardsHTML;
+}
+
+renderTools(tools);
 
 //Search tool
-const searchTool = document.getElementById('tool-search');
+const searchTool = document.getElementById("tool-search");
+
+searchTool.addEventListener("input", function () {
+  const searchValue = searchTool.value.toLowerCase();
+  const filteredTools = tools.filter((tool) => {
+    return tool.name.toLowerCase().includes(searchValue);
+  });
+
+  renderTools(filteredTools);
+});
+
+//Stock Verification
+const verificationStock = document.querySelector(".verification-list");
+
+function renderVerification() {
+  const verificationHTML = tools
+    .map((tool) => {
+      return `
+    <div class="verification">
+      <h3>${tool.name}</h3>
+      <p><strong>Reference:</strong> ${tool.reference}</p>
+      <p><strong>Stock:</strong> ${tool.stock}</p>
+    </div>
+  `;
+    })
+    .join("");
+}
