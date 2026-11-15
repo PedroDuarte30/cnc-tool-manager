@@ -70,6 +70,76 @@
         <h2>Tools</h2>
 
         <div class="tools-toolbar">
+          <div class="modal-overlay" id="add-tool-modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>Add New Tool</h2>
+                <button type="button" id="close-add-tool">&times;</button>
+              </div>
+
+              <form id="add-tool-form">
+                <div class="form-group">
+                  <label for="tool-name">Tool Name</label>
+                  <input
+                    type="text"
+                    id="tool-name"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="tool-reference">Reference</label>
+                  <input
+                    type="text"
+                    id="tool-reference"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="tool-category">Category</label>
+                  <input
+                    type="text"
+                    id="tool-category"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="tool-stock">Initial Stock</label>
+                  <input
+                    type="number"
+                    id="tool-stock"
+                    class="form-control"
+                    min="0"
+                    step="1"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="tool-min-stock">Minimum Stock</label>
+                  <input
+                    type="number"
+                    id="tool-min-stock"
+                    class="form-control"
+                    min="0"
+                    step="1"
+                    required
+                  />
+                </div>
+
+                <div class="modal-actions">
+                  <button type="button" id="cancel-add-tool">Cancel</button>
+                  <button type="submit" class="tool-btn">Add Tool</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
           <div class="tools-search">
             <input
               class="form-control"
@@ -108,8 +178,21 @@
         <h2>Stock Verification</h2>
         <div class="verification-content">
           <p>Check physical stock and confirm any differences</p>
-          <div class="verification-list"></div>
-          <input type="number" value="" min="0">
+          <div class="verification-list">
+            <div class="verification-list">
+              <table class="verification-table">
+                <thead>
+                  <tr>
+                    <th>Tool</th>
+                    <th>Reference</th>
+                    <th>Current Stock</th>
+                    <th>Physical Stock</th>
+                  </tr>
+                </thead>
+                <tbody id="verification-table-body"></tbody>
+              </table>
+            </div>
+          </div>
           <button type="button" class="confirm-btn" id="confirm-verification">
             Confirm Verification
           </button>

@@ -89,13 +89,12 @@ main section h2 {
   font-size: 1.5rem;
 }
 
-/*Verification Status*/
+/* Verification Status */
 .verification-status {
   background-color: var(--cards);
   border: 1px solid var(--highlights);
   border-radius: 8px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin: 15px 0;
   padding: 10px;
 }
 
@@ -107,7 +106,7 @@ main section h2 {
   font-size: 1.2rem;
 }
 
-/*Recent Movements*/
+/* Recent Movements */
 .recent-movements {
   display: flex;
   flex-direction: column;
@@ -115,7 +114,7 @@ main section h2 {
   font-size: 1.4rem;
 }
 
-/*Tools*/
+/* Tools */
 .tools {
   display: flex;
   flex-direction: column;
@@ -133,13 +132,13 @@ main section h2 {
 }
 
 .tool-btn {
+  width: 100%;
   padding: 10px;
   background-color: var(--highlights);
   border: none;
   border-radius: 8px;
   color: var(--main);
   cursor: pointer;
-  width: 100%;
 }
 
 .tool-btn:hover {
@@ -154,6 +153,9 @@ main section h2 {
   font-size: 1.4rem;
 }
 
+
+
+/* Cards */
 .card h3 {
   margin-top: 0;
   color: var(--main);
@@ -209,28 +211,69 @@ main section h2 {
 .tool-card p {
   color: var(--main);
   font-size: 1.4rem;
-  
-
 }
 
-
-/*Stock verification*/
-.verification {
-  display: flex;
-  flex-direction: column;
-}
-
-.verification-content {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 0;
-  gap: 15px;
-}
-
+/* Stock Verification */
 .verification-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.verification-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.verification-table th,
+.verification-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--hover-background);
+}
+
+.verification-table th {
+  position: sticky;
+  top: 0;
+  background-color: inherit;
+  color: inherit;
+  z-index: 1;
+}
+
+.verification-table th:nth-child(1),
+.verification-table td:nth-child(1) {
+  width: 25%;
+}
+
+.verification-table th:nth-child(2),
+.verification-table td:nth-child(2) {
+  width: 25%;
+}
+
+.verification-table th:nth-child(3),
+.verification-table td:nth-child(3) {
+  width: 20%;
+  text-align: center;
+}
+
+.verification-table th:nth-child(4),
+.verification-table td:nth-child(4) {
+  width: 30%;
+}
+
+.verification-table input {
+  width: 80px;
+  padding: 8px;
+  background-color: var(--cards);
+  color: var(--main);
+  border: 1px solid var(--highlights);
+  border-radius: 6px;
+  font: inherit;
+  text-align: center;
+  outline: none;
+}
+
+.verification-table input:focus {
+  border-color: var(--highlights);
 }
 
 .confirm-btn {
@@ -240,6 +283,10 @@ main section h2 {
   border-radius: 8px;
   color: var(--main);
   cursor: pointer;
+}
+
+.confirm-btn {
+  margin-top: 25px;
 }
 
 .confirm-btn:hover {
@@ -371,6 +418,102 @@ main section h2 {
   font-size: 2rem;
   margin-bottom: 5px;
 }
+
+/*Add tool modal*/
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: var(--cards);
+  border: 1px solid var(--highlights);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  font-size: 2rem;
+}
+
+#close-add-tool {
+  background: none;
+  border: none;
+  color: var(--main);
+  font-size: 2.8rem;
+  cursor: pointer;
+}
+
+#add-tool-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 1.4rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.4rem;
+}
+
+#cancel-add-tool {
+  background-color: var(--background);
+  color: var(--main);
+  border: 1px solid #404040;
+}
+
+.modal-actions .tool-btn {
+  width: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*Breakpoint*/
 @media (min-width: 768px) {
