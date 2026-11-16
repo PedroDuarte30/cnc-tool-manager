@@ -190,20 +190,46 @@ function renderVerification() {
 
 renderVerification();
 
-confirmVerification.addEventListener("click", function() {
+confirmVerification.addEventListener("click", function () {
   const verificationInputs = verificationStock.querySelectorAll("input");
+
+  let hasInvalidInput = false;
+
+  const verifiedStock = [];
 
   verificationInputs.forEach((input) => {
     if (input.value === "") return;
 
     const physicalStock = Number(input.value);
+
+    if (!Number.isInteger(physicalStock) || physicalStock < 0) {
+      hasInvalidInput = true;
+      return;
+    }
+
+    let hasVerifiedInput = false;
+
     const toolId = input.dataset.id;
 
     const tool = tools.find((tool) => tool.id === toolId);
 
-    if (physicalStock !== tool.stock) {
-      tool.stock = physicalStock;
-    }
+    verifiedStock.push({
+      id: toolId,
+      stock: physicalStock,
+    });
+  });
+
+  if (hasInvalidInput === true) {
+    return;
+  }
+
+  if (!hasVerifiedInput) {
+    return;
+  }
+
+  verifiedStock.forEach((item) => {
+    const tool = tools.find((tool) => tool.id === item.id);
+    tool.stock = item.stock;
   });
 
   applyFilters();
@@ -211,7 +237,6 @@ confirmVerification.addEventListener("click", function() {
   updateDashboard();
   lastVerification.textContent = new Date().toLocaleDateString();
 });
-
 
 // Add Tool Modal
 const addToolModal = document.getElementById("add-tool-modal");
@@ -231,9 +256,8 @@ cancelAddTool.addEventListener("click", function () {
   addToolModal.style.display = "none";
 });
 
-
 const addToolForm = document.getElementById("add-tool-form");
-addToolForm.addEventListener("submit", function(event) {
+addToolForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const toolName = document.getElementById("tool-name").value;
   const toolReference = document.getElementById("tool-reference").value;
@@ -245,11 +269,10 @@ addToolForm.addEventListener("submit", function(event) {
     return tool.reference === toolReference;
   });
 
-  if(referenceExists) {
+  if (referenceExists) {
     alert("This reference already exists. Please use a different reference.");
     return;
   }
-
 
   const newTool = {
     id: Date.now(),
@@ -258,7 +281,7 @@ addToolForm.addEventListener("submit", function(event) {
     category: toolCategory,
     stock: toolStock,
     minStock: toolMinStock,
-  }
+  };
 
   tools.push(newTool);
   updateDashboard();
@@ -268,5 +291,3 @@ addToolForm.addEventListener("submit", function(event) {
 
   addToolModal.style.display = "none";
 });
-
-
