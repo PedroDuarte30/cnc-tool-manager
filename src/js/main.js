@@ -168,9 +168,12 @@ stockFilter.addEventListener("change", applyFilters);
 const verificationStock = document.getElementById("verification-table-body");
 const confirmVerification = document.getElementById("confirm-verification");
 const lastVerification = document.querySelector(".verification-status p");
+const verificationSearch = document.getElementById("verification-search");
 
-function renderVerification() {
-  const verificationHTML = tools
+const verificationValues = {};
+
+function renderVerification(toolsToRender) {
+  const verificationHTML = toolsToRender
     .map((tool) => {
       return `
         <tr>
@@ -178,7 +181,7 @@ function renderVerification() {
           <td>${tool.reference}</td>
           <td>${tool.stock}</td>
           <td>
-            <input type="number" id="physical-${tool.id}" data-id="${tool.id}" min="0" step="1">
+            <input type="number" id="physical-${tool.id}" data-id="${tool.id}" min="0" step="1" value="${verificationValues[tool.id] || ""}">
           </td>
         </tr>
       `;
@@ -188,29 +191,38 @@ function renderVerification() {
   verificationStock.innerHTML = verificationHTML;
 }
 
-renderVerification();
+verificationStock.addEventListener("input", function (event) {
+  const toolId = event.target.dataset.id;
+  verificationValues[toolId] = event.target.value;
+});
+
+verificationSearch.addEventListener("input", function () {
+  const searchValue = verificationSearch.value.toLowerCase();
+
+  const filteredTools = tools.filter((tool) => {
+    return tool.name.toLowerCase().includes(searchValue);
+  });
+
+  renderVerification(filteredTools);
+});
+
+renderVerification(tools);
 
 confirmVerification.addEventListener("click", function () {
-  const verificationInputs = verificationStock.querySelectorAll("input");
-
   let hasInvalidInput = false;
-
-  const verifiedStock = [];
   let hasVerifiedInput = false;
 
-  verificationInputs.forEach((input) => {
-    if (input.value === "") return;
+  const verifiedStock = [];
 
-    const physicalStock = Number(input.value);
+  Object.entries(verificationValues).forEach(([toolId, value]) => {
+    if (value === "") return;
+
+    const physicalStock = Number(value);
 
     if (!Number.isInteger(physicalStock) || physicalStock < 0) {
       hasInvalidInput = true;
       return;
     }
-
-    const toolId = input.dataset.id;
-
-    const tool = tools.find((tool) => tool.id === toolId);
 
     hasVerifiedInput = true;
 
@@ -220,22 +232,27 @@ confirmVerification.addEventListener("click", function () {
     });
   });
 
-  if (hasInvalidInput === true) {
-    return;
-  }
-
-  if (!hasVerifiedInput) {
-    return;
-  }
+  if (hasInvalidInput || !hasVerifiedInput) return;
 
   verifiedStock.forEach((item) => {
     const tool = tools.find((tool) => tool.id === item.id);
     tool.stock = item.stock;
   });
 
+  Object.keys(verificationValues).forEach((key) => {
+    delete verificationValues[key];
+  });
+
   applyFilters();
-  renderVerification();
+
+  const searchValue = verificationSearch.value.toLowerCase();
+  const filteredTools = tools.filter((tool) =>
+    tool.name.toLowerCase().includes(searchValue)
+  );
+
+  renderVerification(filteredTools);
   updateDashboard();
+
   lastVerification.textContent = new Date().toLocaleDateString();
 });
 

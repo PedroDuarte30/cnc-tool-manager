@@ -153,8 +153,6 @@ main section h2 {
   font-size: 1.4rem;
 }
 
-
-
 /* Cards */
 .card h3 {
   margin-top: 0;
@@ -258,6 +256,12 @@ main section h2 {
 .verification-table th:nth-child(4),
 .verification-table td:nth-child(4) {
   width: 30%;
+}
+
+.verification-toolbar {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
 }
 
 .verification-table input {
@@ -502,18 +506,6 @@ main section h2 {
 .modal-actions .tool-btn {
   width: auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*Breakpoint*/
 @media (min-width: 768px) {
