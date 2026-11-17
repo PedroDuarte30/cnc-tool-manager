@@ -196,6 +196,7 @@ confirmVerification.addEventListener("click", function () {
   let hasInvalidInput = false;
 
   const verifiedStock = [];
+  let hasVerifiedInput = false;
 
   verificationInputs.forEach((input) => {
     if (input.value === "") return;
@@ -207,11 +208,11 @@ confirmVerification.addEventListener("click", function () {
       return;
     }
 
-    let hasVerifiedInput = false;
-
     const toolId = input.dataset.id;
 
     const tool = tools.find((tool) => tool.id === toolId);
+
+    hasVerifiedInput = true;
 
     verifiedStock.push({
       id: toolId,
