@@ -1,38 +1,6 @@
 //Dashboard tools
-const tools = [
-  {
-    id: "tool-001",
-    name: "Broca M5",
-    reference: "BR-M5",
-    category: "Brocas",
-    stock: 12,
-    minStock: 5,
-  },
-  {
-    id: "tool-002",
-    name: "Broca M8",
-    reference: "BR-M8",
-    category: "Brocas",
-    stock: 3,
-    minStock: 5,
-  },
-  {
-    id: "tool-003",
-    name: "Fresa M10",
-    reference: "FR-M10",
-    category: "Fresas",
-    stock: 0,
-    minStock: 2,
-  },
-  {
-    id: "tool-004",
-    name: "Fresa M8",
-    reference: "FR-M8",
-    category: "Fresas",
-    stock: 55,
-    minStock: 2,
-  },
-];
+const tools = [];
+const categories = [];
 
 const totalTools = tools.length;
 
@@ -43,6 +11,7 @@ const totalToolsElement = document.getElementById("total-tools");
 const totalStockElement = document.getElementById("total-stock");
 const lowStockElement = document.getElementById("low-stock");
 const outOfStockElement = document.getElementById("out-stock");
+const movementHistory = document.querySelector(".movement-history");
 
 function updateDashboard() {
   totalStock = 0;
@@ -61,7 +30,7 @@ function updateDashboard() {
     }
   });
 
-  totalToolsElement.textContent = totalTools;
+  totalToolsElement.textContent = tools.length;
   totalStockElement.textContent = totalStock;
   lowStockElement.textContent = lowStock;
   outOfStockElement.textContent = outOfStock;
@@ -86,15 +55,15 @@ function renderTools(toolsToRender) {
       }
 
       return `
-        <div class="tool-card">
-          <h3>${tool.name}</h3>
-          <p><strong>Id:</strong> ${tool.id}</p>
-          <p><strong>Reference:</strong> ${tool.reference}</p>
-          <p><strong>Category:</strong> ${tool.category}</p>
-          <p><strong>Stock:</strong> ${tool.stock}</p>
-          <p><strong>MinStock:</strong> ${tool.minStock}</p>
-          <p><strong>Status:</strong> ${toolStatus}</p>
-        </div>
+        <tr>
+        <td data-label="Tool Name">${tool.name}</td>
+        <td data-label="Tool Reference">${tool.reference}</td>
+        <td data-label="Tool Category">${tool.category}</td>
+        <td data-label="Tool Stock">${tool.stock}</td>
+        <td data-label="Minimum Stock">${tool.minStock}</td>
+        <td data-label="Status">${toolStatus}</td>
+        <td data-label="Actions"></td>
+        </tr>
       `;
     })
     .join("");
@@ -110,16 +79,9 @@ const categoryFilter = document.getElementById("category-filter");
 const stockFilter = document.getElementById("stock-filter");
 
 function renderCategoryFilter() {
-  const categories = tools.map((tool) => {
-    return tool.category;
-  });
-
-  const uniqueCategories = new Set(categories);
-  const categoriesArray = [...uniqueCategories];
-
   let optionsHTML = '<option value="">All categories</option>';
 
-  categoriesArray.forEach((category) => {
+  categories.forEach((category) => {
     const option = `<option value="${category}">${category}</option>`;
     optionsHTML += option;
   });
@@ -247,7 +209,7 @@ confirmVerification.addEventListener("click", function () {
 
   const searchValue = verificationSearch.value.toLowerCase();
   const filteredTools = tools.filter((tool) =>
-    tool.name.toLowerCase().includes(searchValue)
+    tool.name.toLowerCase().includes(searchValue),
   );
 
   renderVerification(filteredTools);
@@ -275,6 +237,7 @@ cancelAddTool.addEventListener("click", function () {
 });
 
 const addToolForm = document.getElementById("add-tool-form");
+const toolCategorySelect = document.getElementById("tool-category");
 addToolForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const toolName = document.getElementById("tool-name").value;
@@ -282,6 +245,7 @@ addToolForm.addEventListener("submit", function (event) {
   const toolCategory = document.getElementById("tool-category").value;
   const toolStock = Number(document.getElementById("tool-stock").value);
   const toolMinStock = Number(document.getElementById("tool-min-stock").value);
+  const addToolForm = document.getElementById("add-tool-form");
 
   const referenceExists = tools.some((tool) => {
     return tool.reference === toolReference;
@@ -293,7 +257,7 @@ addToolForm.addEventListener("submit", function (event) {
   }
 
   const newTool = {
-    id: Date.now(),
+    id: String(Date.now()),
     name: toolName,
     reference: toolReference,
     category: toolCategory,
@@ -304,8 +268,193 @@ addToolForm.addEventListener("submit", function (event) {
   tools.push(newTool);
   updateDashboard();
   renderCategoryFilter();
+  renderVerification(tools);
+  renderMovementTools();
   applyFilters();
   addToolForm.reset();
 
   addToolModal.style.display = "none";
 });
+
+//Stock Movements
+const movementTool = document.getElementById("movement-tool");
+const movementType = document.getElementById("movement-type");
+const movementQuantity = document.getElementById("movement-quantity");
+const registerMovement = document.getElementById("register-movement");
+
+const movements = [];
+
+function renderMovementTools() {
+  const optionsHTML = tools
+    .map((tool) => {
+      return `
+       <option value="${tool.id}">${tool.name}</option>
+     `;
+    })
+    .join("");
+  movementTool.innerHTML =
+    `<option value="">Choose a tool</option>` + optionsHTML;
+}
+
+renderMovementTools();
+
+registerMovement.addEventListener("click", function () {
+  const selectedTool = movementTool.value;
+  const selectedType = movementType.value;
+  const selectedQuantity = movementQuantity.value;
+  const quantity = Number(selectedQuantity);
+
+  if (quantity <= 0 || !Number.isInteger(quantity)) {
+    alert("Please enter a valid whole number greater than zero.");
+    return;
+  }
+
+  if (selectedTool === "") {
+    return;
+  }
+
+  const tool = tools.find((tool) => {
+    return tool.id === selectedTool;
+  });
+
+  if (selectedType === "entry") {
+    tool.stock += quantity;
+  } else if (selectedType === "exit" && quantity > tool.stock) {
+    alert(
+      "Insufficient stock. The requested quantity exceeds available stock.",
+    );
+    return;
+  } else {
+    tool.stock -= quantity;
+  }
+
+  const newMovement = {
+    id: String(Date.now()),
+    toolId: tool.id,
+    toolName: tool.name,
+    type: selectedType,
+    quantity: quantity,
+    date: new Date().toLocaleString(),
+  };
+
+  movements.push(newMovement);
+  updateDashboard();
+  applyFilters();
+  renderVerification(tools);
+  movementQuantity.value = "";
+  renderMovementHistory();
+});
+
+function renderMovementHistory() {
+  if (movements.length === 0) {
+    movementHistory.innerHTML = `
+  <h3>Movement History</h3>
+  <p class="empty-state">No movements recorded yet.</p>
+`;
+  } else {
+    const movementsHTML = movements
+      .map((movement) => {
+        return `
+      <div class="movement-item">
+      ${movement.toolName}
+      ${movement.type}
+      ${movement.quantity}
+      ${movement.date}
+      </div>
+      `;
+      })
+      .join("");
+    movementHistory.innerHTML = `
+     <h3>Movement History</h3>
+     ${movementsHTML}
+    `;
+  }
+}
+
+renderMovementHistory();
+
+//Settings
+const newCategoryInput = document.getElementById("new-category");
+const addCategoryButton = document.getElementById("add-category");
+const categoryList = document.querySelector(".category-list");
+
+addCategoryButton.addEventListener("click", function () {
+  const categoryName = newCategoryInput.value.trim();
+
+  if (categoryName === "") {
+    alert("Empty category");
+    return;
+  }
+
+  const categoryExists = categories.some((category) => {
+    return category.toLowerCase() === categoryName.toLowerCase();
+  });
+
+  if (categoryExists) {
+    alert("Category already exists");
+    return;
+  }
+
+  categories.push(categoryName);
+  renderToolCategorySelect();
+  renderCategories();
+  renderCategoryFilter();
+});
+
+renderCategories();
+
+function renderCategories() {
+  const categoriesHTML = categories
+    .map((category) => {
+      return `
+    <div>
+    <span>${category}</span>
+    <button class="delete-category" data-category="${category}">Delete</button>
+    </div>
+    
+    `;
+    })
+    .join("");
+
+  categoryList.innerHTML = categoriesHTML;
+
+  const deleteCategoryButtons = document.querySelectorAll(".delete-category");
+  deleteCategoryButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const categoryToDelete = button.dataset.category;
+      const categoryInUse = tools.some((tool) => {
+        return tool.category === categoryToDelete;
+      });
+
+      if (categoryInUse) {
+        alert(
+          "This category is assigned to existing tools and cannot be deleted.",
+        );
+        return;
+      }
+
+      const updatedCategories = categories.filter((category) => {
+        return category !== categoryToDelete;
+      });
+      categories.splice(0, categories.length, ...updatedCategories);
+      renderCategories();
+      renderCategoryFilter();
+      renderToolCategorySelect();
+
+      newCategoryInput.value = "";
+    });
+  });
+}
+
+function renderToolCategorySelect() {
+  toolCategorySelect.innerHTML = categories
+    .map((category) => {
+      return `
+    <option value="${category}">${category}</option>
+    
+    `;
+    })
+    .join("");
+}
+
+renderToolCategorySelect();

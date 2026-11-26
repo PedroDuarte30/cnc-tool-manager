@@ -1,7 +1,9 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;1,500;1,600&display=swap");
-@import url(./variables.css);
+@import url("./variables.css");
 
 /* Global styles */
+
 html {
   font-size: 62.5%;
   font-family: "Poppins", sans-serif;
@@ -51,7 +53,8 @@ main section h2 {
   margin-bottom: 10px;
 }
 
-/*Mobile*/
+/* Forms */
+
 .form-control {
   width: 100%;
   padding: 10px;
@@ -66,7 +69,8 @@ main section h2 {
   outline: none;
 }
 
-/*Dashboard*/
+/* Dashboard */
+
 .dashboard-cards {
   display: flex;
   flex-direction: column;
@@ -80,16 +84,20 @@ main section h2 {
   padding: 15px;
 }
 
+.card h3 {
+  margin-top: 0;
+  color: var(--main);
+  font-size: 1.5rem;
+}
+
 .card p {
+  color: var(--main);
   font-size: 2rem;
   font-weight: 500;
 }
 
-.card h3 {
-  font-size: 1.5rem;
-}
-
 /* Verification Status */
+
 .verification-status {
   background-color: var(--cards);
   border: 1px solid var(--highlights);
@@ -107,6 +115,7 @@ main section h2 {
 }
 
 /* Recent Movements */
+
 .recent-movements {
   display: flex;
   flex-direction: column;
@@ -115,6 +124,7 @@ main section h2 {
 }
 
 /* Tools */
+
 .tools {
   display: flex;
   flex-direction: column;
@@ -145,7 +155,16 @@ main section h2 {
   background-color: var(--hover-background);
 }
 
+.tools-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .tools-list {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
   background-color: var(--cards);
   border: 1px solid var(--highlights);
   border-radius: 8px;
@@ -153,72 +172,41 @@ main section h2 {
   font-size: 1.4rem;
 }
 
-/* Cards */
-.card h3 {
-  margin-top: 0;
+/* Tools Table */
+
+.tools-table {
+  width: 100%;
+  min-width: 750px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tools-table th,
+.tools-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--hover-background);
+  white-space: nowrap;
+}
+
+.tools-table th {
   color: var(--main);
 }
 
-.card p {
-  color: var(--main);
-  font-size: 14px;
-}
-
-.card .button {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-.tools-toolbar {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-#container-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.tool-card {
-  background-color: var(--background);
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  text-align: center;
-  transition: transform 0.2s;
-}
-
-.tool-card:hover {
-  transform: translateY(-5px);
-}
-
-.tool-card h3 {
-  margin-top: 0;
-  color: var(--main);
-}
-
-.tool-card p {
-  color: var(--main);
-  font-size: 1.4rem;
+.tools-table td {
+  color: var(--secondary);
 }
 
 /* Stock Verification */
+
 .verification-list {
   max-height: 400px;
   overflow-y: auto;
+  overflow-x: auto;
 }
 
 .verification-table {
   width: 100%;
+  min-width: 550px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -232,8 +220,8 @@ main section h2 {
 .verification-table th {
   position: sticky;
   top: 0;
-  background-color: inherit;
-  color: inherit;
+  background-color: var(--cards);
+  color: var(--main);
   z-index: 1;
 }
 
@@ -282,6 +270,7 @@ main section h2 {
 
 .confirm-btn {
   padding: 10px;
+  margin-top: 25px;
   background-color: var(--highlights);
   border: none;
   border-radius: 8px;
@@ -289,15 +278,12 @@ main section h2 {
   cursor: pointer;
 }
 
-.confirm-btn {
-  margin-top: 25px;
-}
-
 .confirm-btn:hover {
   background-color: var(--hover-background);
 }
 
-/*Stock Movements*/
+/* Stock Movements */
+
 .movements {
   display: flex;
   flex-direction: column;
@@ -346,7 +332,8 @@ main section h2 {
   font-size: 1.4rem;
 }
 
-/*Settings*/
+/* Settings */
+
 .settings {
   display: flex;
   flex-direction: column;
@@ -394,7 +381,8 @@ main section h2 {
   font-size: 1.4rem;
 }
 
-/*Bottom Nav */
+/* Bottom Nav */
+
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -423,7 +411,8 @@ main section h2 {
   margin-bottom: 5px;
 }
 
-/*Add tool modal*/
+/* Add Tool Modal */
+
 .modal-overlay {
   display: none;
   position: fixed;
@@ -507,16 +496,20 @@ main section h2 {
   width: auto;
 }
 
-/*Breakpoint*/
+/* Desktop Breakpoint */
+
 @media (min-width: 768px) {
-  /*Dashboard*/
+
+  /* Dashboard */
+
   .dashboard-cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
   }
 
-  /*Tools*/
+  /* Tools */
+
   .tools-filters {
     display: flex;
     align-items: center;
@@ -541,21 +534,15 @@ main section h2 {
     min-width: 0;
   }
 
-  #container-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+  /* Verification */
 
-  /*Verification*/
   .verification-content {
     gap: 20px;
     font-size: 1.4rem;
   }
 
-  /*Stock Movements*/
+  /* Stock Movements */
+
   .movements-content {
     display: grid;
     grid-template-columns: 2fr 3fr;
@@ -565,12 +552,16 @@ main section h2 {
     text-align: center;
   }
 
+  /* Settings */
+
   .category-form {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
     gap: 15px;
   }
+
+  /* Bottom Nav */
 
   .bottom-nav {
     padding: 15px 20px;

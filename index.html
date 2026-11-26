@@ -100,12 +100,11 @@
 
                 <div class="form-group">
                   <label for="tool-category">Category</label>
-                  <input
-                    type="text"
+                  <select
                     id="tool-category"
                     class="form-control"
                     required
-                  />
+                  ></select>
                 </div>
 
                 <div class="form-group">
@@ -168,9 +167,24 @@
         </div>
 
         <div class="tools-list">
-          <div id="container-cards">
-            <p>No tools found.</p>
-          </div>
+          <table class="tools-table">
+            <thead>
+              <tr>
+                <th>Tool Name</th>
+                <th>Reference</th>
+                <th>Category</th>
+                <th>Stock</th>
+                <th>Minimum Stock</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="container-cards">
+              <tr>
+                <td colspan="7">No tools found.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
